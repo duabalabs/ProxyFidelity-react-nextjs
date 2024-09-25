@@ -26,16 +26,25 @@ export const DocumentUpload = ({ project }: DocumentUploadProps) => {
     try {
       // Create a Parse File object
       const parseFile = new Parse.File(file.name, file);
+      await parseFile.save(); // Save to DigitalOcean Spaces via Parse
 
-      // Save the file to DigitalOcean Spaces (through Parse)
-      await parseFile.save();
+      // Create a ProjectFile object and attach file details
+      const ProjectFile = Parse.Object.extend('ProjectFile');
+      const projectFile = new ProjectFile();
 
-      // Once uploaded, attach the file to the project and save the project
-      project.add('files', parseFile);
+      projectFile.set('file', parseFile); // Set the actual file
+      projectFile.set('name', file.name); // Set the actual file
+      projectFile.set('project', project); // Link to the project
+      projectFile.set('fileType', file.type.includes('image') || file.type.includes('video') ? 'media' : 'document'); // Set file type for categorization
+
+      // Save the project file object
+      await projectFile.save();
+
+      // Optionally update the project object if necessary
+      project.add('files', projectFile);
       await project.save();
-console.log("has saved finish")
-      // Clear file input and reset uploading state
-      setFile(null);
+
+      setFile(null); // Clear file input
       setIsUploading(false);
     } catch (error) {
       console.error('Error uploading file:', error);

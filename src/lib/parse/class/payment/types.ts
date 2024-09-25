@@ -1,4 +1,4 @@
-import Parse from 'parse/node'
+import Parse from 'parse'
 import { Address } from "..";
 
 export enum PAYMENT_METHODS {

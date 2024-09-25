@@ -1,4 +1,4 @@
-import Parse from 'parse/node'
+import Parse from 'parse'
 export interface ICoordinates extends Parse.GeoPoint {
   accuracy?: number;
   altitude?: number;

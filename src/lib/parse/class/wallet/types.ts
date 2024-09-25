@@ -1,4 +1,4 @@
-import Parse from 'parse/node'
+import Parse from 'parse'
 import { Payment, User } from "..";
 
 export interface IWallet extends Parse.Object {

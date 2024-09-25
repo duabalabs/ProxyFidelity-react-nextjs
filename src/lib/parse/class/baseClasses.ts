@@ -1,4 +1,4 @@
-import Parse from 'parse/node'
+import Parse from 'parse'
 
 const getter = (object: any, key: string) => {
     //TODO: Notes: We probably need to define more rules for trapping properties on the proxy classes.

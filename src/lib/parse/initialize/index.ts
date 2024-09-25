@@ -1,5 +1,7 @@
+"use client";
+
 import { ParseBaseClass } from '../class/baseClasses';
-import Parse from 'parse/node';
+import Parse from 'parse';
 
 export interface IParseServerAPICred {
   serverURL: string;
@@ -18,12 +20,13 @@ export class ParseInitialize {
     this.initialize(config, subClasses);
   }
   protected initialize(config: IParseServerAPICred, subClasses?: SubClass[]) {
+
+    Parse.initialize(config.appId, config.javascriptKey);
+    Parse.serverURL = config.serverURL;
+    this.initialized = true;
     if (subClasses) {
       this.registerParseSubClasses(subClasses);
     }
-    Parse.serverURL = config.serverURL;
-    Parse.initialize(config.appId, config.javascriptKey);
-    this.initialized = true;
   }
   registerParseSubClasses(subClasses: SubClass[]) {
     subClasses.forEach((subClass) =>

@@ -1,4 +1,4 @@
-import Parse from 'parse/node'
+import Parse from 'parse'
 import { ParseFunctions } from "../parseFunctions";
 import { Chat } from ".";
 import { CHAT_TYPE, IGetChatParams } from "./types"

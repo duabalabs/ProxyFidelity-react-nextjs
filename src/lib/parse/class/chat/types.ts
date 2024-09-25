@@ -1,4 +1,4 @@
-import Parse from 'parse/node'
+import Parse from 'parse'
 import { Message, Order, User } from "..";
 export interface IGetChatParams {
   type: CHAT_TYPE;

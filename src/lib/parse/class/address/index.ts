@@ -1,4 +1,4 @@
-import Parse from 'parse/react-native'
+import Parse from 'parse'
 import { IAddress } from "./types";
 import { ParseBaseClass } from "../baseClasses";
 export const ADDRESS_CLASSNAME = "Address";

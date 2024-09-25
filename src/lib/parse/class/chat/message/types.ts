@@ -1,5 +1,7 @@
-import Parse from 'parse/node'
-import { IMessage as IGiftedChatMessage } from "react-native-gifted-chat";
+import Parse from 'parse'
+import { User } from '../../user';
 
-export interface IMessage extends Parse.Object, IGiftedChatMessage {
+export interface IMessage extends Parse.Object {
+    text: string;
+    user: User;
 }

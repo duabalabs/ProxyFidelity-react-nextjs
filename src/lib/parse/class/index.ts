@@ -21,3 +21,10 @@ const CustomSubClasses: SubClass[] = [
 export const SubClasses: SubClass[] = [
   ...CustomSubClasses
 ];
+
+
+export * from './address'
+export * from './project'
+export * from './user'
+export * from './chat'
+export * from './project-file'

@@ -30,10 +30,9 @@ export const ProjectFiles = ({ project }: { project: Project }) => {
 
   const renderFileLink = (file: ProjectFile) => {
     const fileUrl = file.get('file').url();
-
     return (
       <ListItem key={file.id}>
-        <Typography variant="body1">{file.name}</Typography>
+        <Typography variant="body1">{file.get('name')}</Typography>
         <Button onClick={() => openFile(fileUrl)}>View</Button>
       </ListItem>
     );
@@ -45,15 +44,25 @@ export const ProjectFiles = ({ project }: { project: Project }) => {
 
   return (
     <div>
-      <Typography variant="h6">Documents</Typography>
-      <List>
-        {documents.map(renderFileLink)}
-      </List>
+      {/* Render Documents Section only if there are documents */}
+      {documents.length > 0 && (
+        <>
+          <Typography variant="h6">Documents</Typography>
+          <List>
+            {documents.map(renderFileLink)}
+          </List>
+        </>
+      )}
 
-      <Typography variant="h6" className="mt-4">Media</Typography>
-      <List>
-        {media.map(renderFileLink)}
-      </List>
+      {/* Render Media Section only if there are media files */}
+      {media.length > 0 && (
+        <>
+          <Typography variant="h6" className="mt-4">Media</Typography>
+          <List>
+            {media.map(renderFileLink)}
+          </List>
+        </>
+      )}
 
       {/* Modal to view files */}
       <Dialog open={!!selectedFile} onClose={closeFile} maxWidth="lg" fullWidth>
